@@ -17,7 +17,7 @@ export default class Main extends Component {
                 <Route path='/vidus/new' exact component={VidusCreate} />
                 <Route path='/vidus/edit/:id' exact component={VidusEdit} />
                 <Route path='/vidus/delete/:id' exact component={VidusDelete} />
-                <Route path='/vidus/video/:id' component={VideoCreate} />
+                <Route path='/vidus/video/:id' exact component={VideoCreate} />
                 <Route path='/vidus/show/:id' exact component={VidusShow} />
             </Switch>
         )

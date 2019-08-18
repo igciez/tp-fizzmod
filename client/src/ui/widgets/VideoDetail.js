@@ -7,7 +7,6 @@ const VideoDeatail = (props) => {
         return "";
     }
 
-
     const videoSrc = `https://www.youtube.com/embed/${props.video.id.videoId}`;
 
     return (
@@ -18,7 +17,9 @@ const VideoDeatail = (props) => {
             <div className="ui segment">
                 <h4 className="ui header">{props.video.snippet.title}</h4>
                 <p>{props.video.snippet.description}</p>
-                <Link to={`/vidus/edit/${props.vidusId}`}>Seleccionar Video</Link>
+                <Link to={`/vidus/edit/${props.vidusId}`} className="ui primary basicfluid button">
+                    Seleccionar Video
+                </Link>
             </div>
         </div>
     );

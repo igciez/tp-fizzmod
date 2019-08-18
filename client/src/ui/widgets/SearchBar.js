@@ -1,8 +1,5 @@
 import React from 'react';
 
-/**
- * VER CON FECTH DE PROFESOR!!! -> PARA NO USAR UN ESTADO FUERA DEL STORE
- */
 class SearchBar extends React.Component {
     state = { term: '' };
 

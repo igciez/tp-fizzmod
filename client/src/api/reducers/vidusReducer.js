@@ -5,7 +5,7 @@ import {
     FETCH_VIDUS,
     DELETE_VIDUS,
     EDIT_VIDUS,
-} from "../actions/types";   //---> pasar si o si al reducer: ya que la base de datos trae un objeto determinado, es mejor para poder ordenarse. 
+} from "../actions/types"; 
 
 let estadoInicial={
     currentUser:1
@@ -18,7 +18,6 @@ let vidusReducer = (estado = estadoInicial, action) => {
         case FETCH_VIDUS:
         case CREATE_VIDUS:
         case EDIT_VIDUS:
-            //Se genera una array con todos los id de los posteos del VIDUS
             return { ...estado, [action.payload.id]: action.payload, currentUser:action.payload.id }; 
         case DELETE_VIDUS:
             return _.omit(estado, action.payload);

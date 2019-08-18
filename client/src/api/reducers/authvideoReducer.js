@@ -2,14 +2,14 @@ import {
     SIGN_IN,
     SIGN_OUT,
     FETCH_VIDEOS,
-    SELECTED_VIDEO
+    SELECTED_VIDEO,
 } from "../actions/types";
 
 let estadoInicial = {
     isSignedIn: null,
     userId: null,
     videos: [],
-    selectedVideo: null
+    selectedVideo: null,
 }
 
 let authvideoReducer = (estado = estadoInicial, action) => {

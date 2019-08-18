@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { NavLink } from "react-router-dom";
-import Modal from '../widgets/Modal';
+import Notification from '../widgets/Notification';
 import history from '../../api/history';
 import { fetchVidUs, deleteVidUs } from "../../api/actions/index";
 
@@ -12,8 +12,11 @@ class VidusDelete extends React.Component {
         this.props.fetchVidUs(this.props.match.params.id);
     }
 
-    //<React.Fragment> --> es usa para enviar un solo fragmento cuando se hace
-    //un reacomodamiento del codigo para hacerlo reutilizable, evitando enviar un nuevo "div".
+    /**
+     * Funcion que puede pasarse como "props",
+     * en el componente "Notification" para agregar botones.
+     * Esta props anula el tiempo por default que corre la aplicacion. 
+     */
     renderActions() {
         let { id } = this.props.match.params;
 
@@ -28,22 +31,17 @@ class VidusDelete extends React.Component {
                 <NavLink to='/' className='ui button'>Cancelar</NavLink>
             </React.Fragment>
         );
-    }
+    } 
 
-    renderContent() {
-        if (!this.props.stream) {
-            return "Borrar user:";
-        }
-        return `Borrar user: ${this.props.user.title} `;
-    }
-    //REmplazar por una ventana de borrando!!! --- > elimnar a modal
     render() {
         return (
-            <Modal
-                title="Desea borrar el VidUS?"
-                content={this.renderContent()}
+            <Notification
+                title="Borrando VidUs..."
                 actions={this.renderActions()}
+                //actions={null}
                 onDismiss={() => history.push('/')}
+                //time={5000}
+                time={null}
             />
         );
     };

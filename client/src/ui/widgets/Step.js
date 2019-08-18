@@ -2,28 +2,27 @@ import React, { Component } from 'react';
 
 export default class Step extends Component {
     render() {
-        console.log(this.props.typeClass);
-        let classNameDescripcion = (this.props.typeClass === "descripcion"? "active step" : "step"); 
+        let classNameDescripcion = (this.props.typeClass === "descripcion"? "active step" : "disabled step"); 
         let classNameVideo =(this.props.typeClass === 'video'? "active step":"disabled step" );
-        console.dir(classNameDescripcion);
-        console.dir(classNameVideo);
+        let classNameConfimacion =(this.props.typeClass === 'confirmacion'? "active step":"disabled step" );
+        
         return (
             <div className="ui three top attached steps">
                 <div className={classNameDescripcion}>
-                    <i className="truck icon"></i>
+                    <i className="list ul icon"></i>
                     <div className="content">
                         <div className="title">Descripcion</div>
-                        <div className="description">Agrega el tema del video</div>
+                        <div className="description">Informacion acerca del VidUs</div>
                     </div>
                 </div>
                 <div className={classNameVideo}>
-                    <i className="payment icon"></i>
+                    <i className="file video icon"></i>
                     <div className="content">
                         <div className="title">Video</div>
                         <div className="description">Selecciona el video que te interese</div>
                     </div>
                 </div>
-                <div className="disabled step">
+                <div className={classNameConfimacion}>
                     <i className="info icon"></i>
                     <div className="content">
                         <div className="title">Confirmar Datos</div>
@@ -34,7 +33,3 @@ export default class Step extends Component {
         )
     }
 }
-
-/*
-<div class="ui attached segment">
-            </div>-*/

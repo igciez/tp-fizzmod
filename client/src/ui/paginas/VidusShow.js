@@ -10,9 +10,7 @@ class VidusShow extends React.Component {
         this.props.fetchVidUs(this.props.match.params.id);
     }
 
-
     render() {
-
         const { title, description, video } = this.props.vidus;
 
         return (
@@ -29,16 +27,13 @@ class VidusShow extends React.Component {
             </div>
         );
     }
-
 };
 /**
  * 
- * @param {*store from reducer} state 
- * @param {*Props in the courrent class (constructor)} ownProps ????
+ * @param {*store del reducer} state 
+ * @param {*Props que obtiene propiedades del navegador} ownProps 
  */
 let mapToStateProps = (state, ownProps) => {
-    //2/3 se carga en la propiedad "stream", el estado devuelto por el reductor, 
-    //con un determinado id. 
     return { vidus: state.viduss[ownProps.match.params.id] }
 }
 

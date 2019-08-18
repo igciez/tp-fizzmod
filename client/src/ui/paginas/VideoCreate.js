@@ -17,8 +17,8 @@ class Video extends React.Component {
     }
 
     render() {
-        let {videos, selectedVideo, fetchVideos, vidusId }= this.props;
-        console.dir(vidusId);
+        let {videos, selectedVideo, selectingVideo, fetchVideos, vidusId }= this.props;
+        
         return (
             <div className='ui container'>
                 <Step typeClass={"video"}/>
@@ -41,17 +41,12 @@ class Video extends React.Component {
 let mapStateToProps = (store, ownProps) => ({
     videos : store.authvideo.videos,
     selectedVideo: store.authvideo.selectedVideo,
-    //vidusId: ownProps.match.params.id
     vidusId: store.viduss.currentUser
 });
 
-/**
- * Funcion que une el dispatch para poder usar la funcion idependientemente del reducer ???
- */
 let mapDispatchToProps=dispatch=>({
     fetchVideos: bindActionCreators (fetchVideos,dispatch),
     selectingVideo: bindActionCreators(selectingVideo,dispatch)
-}) 
-
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(Video);

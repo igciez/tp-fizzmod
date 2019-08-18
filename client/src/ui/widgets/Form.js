@@ -40,10 +40,10 @@ class Form extends React.Component {
                 className='ui form error'
                 onSubmit={this.props.handleSubmit(this.onSubmit)}
             >
-                <Field name='title' component={this.renderInput} label='Ingrese el titulo' />
-                <Field name='description' component={this.renderInput} label='Ingrese la descripcion' />
-                <Field name='video' component={this.renderInput} label='Link del Video' />
-                <button className='ui button primary'>{this.props.buttonName}</button>                
+                <Field name='title' component={this.renderInput} label='Ingrese su nombre:' />
+                <Field name='description' component={this.renderInput} label='Ingrese un titulo:' />
+                <Field name='video' component={this.renderInput} label='Link del Video:' />
+                <button className='ui left floated button primary'>{this.props.buttonName}</button>               
             </form>
         );
     }
@@ -53,10 +53,10 @@ let validate = (formValues) => {
     let errors = {};
 
     if (!formValues.title) {
-        errors.title = 'Ingrese un titulo!';
+        errors.title = 'Ingrese su nombre!';
     }
     if (!formValues.description) {
-        errors.description = 'Ingrese una descripcion!';
+        errors.description = 'Ingrese un titulo!';
     }
 
     return errors;

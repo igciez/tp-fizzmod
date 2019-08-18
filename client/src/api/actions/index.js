@@ -10,9 +10,13 @@ import {
     DELETE_VIDUS,
     EDIT_VIDUS,
     FETCH_VIDEOS,
-    SELECTED_VIDEO
+    SELECTED_VIDEO,
 } from "./types";
 
+/**
+ * Funcion que obtinen el userId
+ * @param {*Id de usario registrado en cuenta de google} userId 
+ */
 export let signIn = (userId) => {
     return {
         type: SIGN_IN,
@@ -20,29 +24,36 @@ export let signIn = (userId) => {
     };
 };
 
+/**
+ * Funcion que notifica que el usuario termino la sesion.
+ */
 export let signOut = () => {
     return {
         type: SIGN_OUT
     };
 };
 
-// Ver las tablas de convenciones(en carpeta) de dbJson para crear las siguientes "const".
-//async (dispatch, getState) --> getState, es el segundo argumento de Redux-Thunk para obtener datos.
+/**
+ * Funcion que obtiene del estado el usuario que se encuentra registrado
+ * y junto con formValues se crea un objeto en la base de datos.
+ * Luego se redirige para seleccionar el video. 
+ * @param {*valores del formulario a agregar a la base de datos} formValues 
+ */
 export let createVidUs = formValues => async (dispatch, getState) => {
     let { userId } = getState().authvideo;
     let {currentUser}=getState().viduss;
-    //let videoSrc = `https://www.youtube.com/embed/${selectedVideo.id.videoId}`;
-
     let response = await db.post('/vidus', { ...formValues, userId});
-        //add selecetedVideo
+
     dispatch({
         type: CREATE_VIDUS,
         payload: response.data
     });
-    console.log(currentUser);
+    
     history.push(`/vidus/video/${currentUser}`);
 }
-
+/**
+ * buscar todos los vidus en la base de datos
+ */
 export let fetchVidUss = () => async dispatch => {
     let response = await db.get('/vidus');
 
@@ -51,7 +62,10 @@ export let fetchVidUss = () => async dispatch => {
         payload: response.data
     });
 }
-
+/**
+ * Busca en base de datos, un solo vidus
+ * @param {*vidus a editar} id 
+ */
 export let fetchVidUs = (id) => async dispatch => {
     let response = await db.get(`/vidus/${id}`);
 
@@ -61,9 +75,13 @@ export let fetchVidUs = (id) => async dispatch => {
     });
 }
 
+/**
+ * Funcion que edita los valores de la base de datos, en base al id
+ * y luego redirige a la pagina principal.
+ * @param {*viuds a editar} id 
+ * @param {*valores del formulario a agregar a la base de datos} formValues 
+ */
 export let editVidUs = (id, formValues) => async dispatch => {
-    //"patch", actualiza los valores que cambiaron sin modificar el resto, 
-    //como si lo haria 'put'
     let response = await db.patch(`/vidus/${id}`, formValues);
 
     dispatch({
@@ -71,9 +89,12 @@ export let editVidUs = (id, formValues) => async dispatch => {
         payload: response.data
     });
     history.push('/');
-    //this.props.history.push('/');
 }
 
+/**
+ * Funcion que borra un vidus
+ * @param {id a borrar} id 
+ */
 export let deleteVidUs = (id) => async dispatch => {
     await db.delete(`/vidus/${id}`);
 
@@ -82,11 +103,10 @@ export let deleteVidUs = (id) => async dispatch => {
         payload: id
     });
     history.push('/');
-    //this.props.history.push('/');
 }
 /**
  * 
- * @param {onTermSubmit} term -->fetchVideo !!TO-DO!!
+ * @param {busca en base a "term" en youtube} term 
  */
 export let fetchVideos = (term) => async dispatch => {
     let response = await youtube.get('/search', { params: { q: term } });
@@ -97,7 +117,11 @@ export let fetchVideos = (term) => async dispatch => {
     })
 
 }
+
 /**
- * 
+ * Devuelve el video de youtube seleccionado
+ * @param {*objeto seleccionado} e 
  */
-export let selectingVideo = (e) => ({ type: SELECTED_VIDEO, payload: e});
+export let selectingVideo = (e) => ({type: SELECTED_VIDEO, payload: e});
+
+    

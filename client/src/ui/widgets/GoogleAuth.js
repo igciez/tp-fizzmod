@@ -8,6 +8,7 @@ class GoogleAuth extends React.Component {
     //state = { isSignedIn: null };
 
     componentDidMount() {
+
         window.gapi.load('client:auth2', () => {
             window.gapi.client.init({
                 clientId: '139033583816-ild1vrv9t0d2j3ml999ng4kmj4j9ctee.apps.googleusercontent.com',
@@ -17,6 +18,9 @@ class GoogleAuth extends React.Component {
                 //this.setState({ isSignedIn: this.auth.isSignedIn.get() });
                 this.onAuthChange(this.auth.isSignedIn.get())
                 this.auth.isSignedIn.listen(this.onAuthChange);
+            }).catch(e=>{
+                console.log(e);
+                console.log("error");
             });
         });
         //-->window es una variable del scope del browser, 
