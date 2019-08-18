@@ -1,4 +1,4 @@
-# ViDus 
+﻿# ViDus 
 
 ## Aplicación que simula ser una red social en dónde cada usuario escribe un comentario y junto a este agrega un video. Cada post que haga el usuario se denomina VidUs. 
 
